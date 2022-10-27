@@ -37,4 +37,7 @@ export class SalaryComponent implements OnInit {
       }
     );
   }
+  printThispage(){
+    window.print();
+  }
 }
