@@ -9,4 +9,3 @@ export class userfull {
     phone!: number;
     passwd!: string;
   }
-  

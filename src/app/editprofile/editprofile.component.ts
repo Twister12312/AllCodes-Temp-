@@ -31,7 +31,7 @@ export class EditprofileComponent implements OnInit {
       eid: this.eid,
 
       name: addForm.value.name,
-      dob: addForm.value.date,
+      dob: addForm.value.dob,
       email: addForm.value.email,
       designation: addForm.value.designation,
       address: addForm.value.address,
