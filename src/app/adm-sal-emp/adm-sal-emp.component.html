@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Employee Payroll Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <a routerLink="/adminhome">Home</a>
+        <a routerLink="/list-emp">Employee Details</a>
+        <a routerLink="/admatthome">Attendance</a>
+        <a routerLink="/admschdhome">Work Schedule</a>
+        <a routerLink="/admsalhome">Salary</a>
+        <a routerLink="/admleavehome">Leaves</a>
+
+        <a routerLink="/admin">Logout</a>
+
+
+    </div>
+
+    <div class="container" style=" padding:10px;border-radius: 7px;">
+        <h2 style="text-align: center;">Welcome to Employee Payroll Management</h2><br>
+
+<div >
+    <h3>All Salary list for Employee ID --> {{myParamValue}}:</h3>
+    <table class="table"  style="margin: 0px; border: 1px solid rgb(216, 211, 211);">
+        <thead>
+          <tr>
+            <th>Sid</th>
+            <th>Month</th>
+            <th>Salary</th>
+            <th> </th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sal of salarys">
+            <td>{{sal.sid}}</td>
+            <td>{{sal.month}}</td>
+            <td>{{sal.salary}}</td>
+            <td>
+                <button type="button" class="btn btn-secondary" (click)="salari=sal;isclicked=!isclicked;">Edit</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"  (click)="Delete(sal.sid)">Delete</button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+      <br>
+      <button class="btn btn-warning" routerLink="/admsalhome">Go Back</button>
+
+</div>
+<br>
+<br>
+<div *ngIf="isclicked">
+    <form #contactForm="ngForm" (ngSubmit)="Edit(contactForm.value)">
+        <div class="form-group">
+            <label for="UserId">Sid:</label>
+            <div><pre>{{salari.sid}}</pre></div>
+            </div>
+        <div class="form-group">
+            <label for="UserId">Date:</label>
+            <input required  ngModel name="month" type="text" #month="ngModel" class="form-control" id="month" style="width: 10%;">
+            <div class="alert alert-danger" *ngIf="month.touched && !month.valid">
+                <div *ngIf="month.errors?.required">Month is required.</div>
+                <div *ngIf="month.errors?.minlength">Month is minimum {{ month.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="month.errors?.maxlength">Month is maximum 10 character.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="UserId">Salary:</label>
+            <input required  ngModel name="salary" type="text" #salary="ngModel" class="form-control" id="salary" style="width: 10%;">
+            <div class="alert alert-danger" *ngIf="salary.touched && !salary.valid">
+                <div *ngIf="salary.errors?.required">Salary is required.</div>
+                <div *ngIf="salary.errors?.minlength">Salary is minimum {{ salary.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="salary.errors?.maxlength">Salary is maximum 10 character.</div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit" [class.disabled]="!contactForm.valid">Submit</button>
+        <br>
+        <br>
+
+      </form>
+  </div>
+  <button type="button" class="btn btn-warning" (click)="addclicked=!addclicked">Add</button>
+<div *ngIf="addclicked">
+    <form #contactForm="ngForm" (ngSubmit)="Add(contactForm.value)">
+
+        <div class="form-group">
+            <label for="UserId">Month:</label>
+            <input required  ngModel name="month" type="text" #month="ngModel" class="form-control" id="month" style="width: 10%;">
+            <div class="alert alert-danger" *ngIf="month.touched && !month.valid">
+                <div *ngIf="month.errors?.required">Month is required.</div>
+                <div *ngIf="month.errors?.minlength">Month is minimum {{ month.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="month.errors?.maxlength">Month is maximum 10 character.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="UserId">Salary:</label>
+            <input required  ngModel name="salary" type="text" #salary="ngModel" class="form-control" id="salary" style="width: 10%;">
+            <div class="alert alert-danger" *ngIf="salary.touched && !salary.valid">
+                <div *ngIf="salary.errors?.required">Salary is required.</div>
+                <div *ngIf="salary.errors?.minlength">Salary is minimum {{ salary.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="salary.errors?.maxlength">Salary is maximum 10 character.</div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit" [class.disabled]="!contactForm.valid">Submit</button>
+        <br>
+        <br>
+
+      </form>
+  </div>
+ </div>
+
+</body>
+</html>

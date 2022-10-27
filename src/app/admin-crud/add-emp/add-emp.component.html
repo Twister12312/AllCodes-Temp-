@@ -1,0 +1,85 @@
+<div class="sidebar">
+  <a routerLink="/adminhome">Home</a>     
+  <a  routerLink="/list-emp">Employee Details</a>
+  <a routerLink="/admatthome">Attendance</a>
+  <a routerLink="/admschdhome">Work Schedule</a>
+  <a routerLink="/admsalhome">Salary</a>
+  <a routerLink="/admleavehome">Leaves</a>
+
+  <a routerLink="/admin">Logout</a>
+
+
+</div>
+
+<div class="col-md-6">
+    <h3 class="text-center" style="color:rgb(100, 100, 249);text-shadow: 0 0 3px #00e1ff, 0 0 5px #e6e6f1;">{{empformlabel}}</h3>
+    <form [formGroup]="addForm" novalidate class="form" style="margin: auto; padding-top: 5px; padding-bottom: 10px;width: 400px;">
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="eid">Employee Id:</label>
+        <input type="number" formControlName="eid" placeholder="Id" name="eid" class="form-control" id="eid">
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="name">Name:</label>
+        <input formControlName="name" placeholder="Name" name="name" class="form-control" id="name">
+        <div class="alert  alert-danger" *ngIf="addForm.get('name')!.hasError('required') && addForm.get('name')!.touched">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="dob">Date of Birth:</label>
+        <input formControlName="dob" placeholder="Date of Birth" name="dob" class="form-control" id="dob">
+        <div class="alert  alert-danger" *ngIf="addForm.get('dob')!.hasError('required') && addForm.get('dob')!.touched">
+          DOB is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="email">Email ID:</label>
+        <input formControlName="email" placeholder="Employee Email ID" name="email" class="form-control" id="email">
+        <div class="alert  alert-danger" *ngIf="addForm.get('email')!.hasError('required') && addForm.get('email')!.touched">
+          Email ID is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="designation">Designation:</label>
+        <input formControlName="designation" placeholder="Designation" name="designation" class="form-control" id="designation">
+        <div class="alert  alert-danger" *ngIf="addForm.get('designation')!.hasError('required') && addForm.get('designation')!.touched">
+          Designation is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="address">Address:</label>
+        <input formControlName="address" placeholder="Address" name="address" class="form-control" id="homeaddress">
+        <div class="alert  alert-danger" *ngIf="addForm.get('address')!.hasError('required') && addForm.get('address')!.touched">
+          Address is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="gender">Gender:</label>
+        <select class="form-select" aria-label="Default select example" formControlName="gender">
+          <option selected>--select--</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+        <div class="alert  alert-danger" *ngIf="addForm.get('gender')!.hasError('required') && addForm.get('gender')!.touched">
+          Gender is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="phone">Mobile Number:</label>
+        <input formControlName="phone" placeholder="Phone Number" name="phone" class="form-control" id="phone">
+        <div class="alert  alert-danger" *ngIf="addForm.get('phone')!.hasError('required') && addForm.get('phone')!.touched">
+          Mobile Number is required
+        </div>
+      </div>
+      <div class="form-group" style=" padding: 12px 20px;">
+        <label for="passwd">Password:</label>
+        <input formControlName="passwd" placeholder="Password" name="passwd" class="form-control" id="passwd" type="password">
+        <div class="alert  alert-danger" *ngIf="addForm.get('passwd')!.hasError('required') && addForm.get('passwd')!.touched">
+          Password is required
+        </div>
+      </div>
+
+      <button class="btn btn-success" [disabled]='addForm.invalid' (click)="onSubmit()">Save</button>
+    </form>
+  </div>

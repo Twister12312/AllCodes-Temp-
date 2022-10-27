@@ -1,0 +1,50 @@
+<head>
+    <style>
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+      }
+
+      li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+      h1 {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+      /* Change the link color on hover */
+      li a:hover {
+        background-color: #555;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <ul class="nav nav-navbar">
+      <li><button class="btn btn-primary" (click)="gotoRegister()">Profile</button>&nbsp;</li>
+      <br>
+      <li><button class="btn btn-primary" (click)="gotosalary()">Salary</button>&nbsp;</li>
+      <br>
+      <li><button class="btn btn-primary" (click)="gotoattendance()">Attendance</button>&nbsp;</li>
+      <br>
+      <li><button class="btn btn-primary" (click)="gotoschedule()">Schedule</button>&nbsp;</li>
+      <br>
+      <li><button class="btn btn-primary" (click)="gotoeditprofile()">Editprofile</button>&nbsp;</li>
+      <br>
+      <li><button class="btn btn-primary" (click)="gotoapplyleave()">Apply leave</button>&nbsp;</li>
+      <br>
+      <li><button class="btn btn-primary" routerLink="/user">Logout</button>&nbsp;</li>
+    </ul>
+    <br><br>
+    <img src="https://img.freepik.com/free-vector/welcome-sign-board_25147-104.jpg?size=626&ext=jpg" alt="welcome" width="900" height="500" style="margin-left: 450px;">
+  </body>
+

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Employee Payroll Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <br><br>
+<div
+id="overall"
+class="container mx-200 mt-10 border justify-center"
+style="width: 400px; background-color: rgb(187, 191, 194)">
+<h4 class="text-center">Employee Login</h4>
+<form
+  #userlogin="ngForm"
+  (ngSubmit)="onClickSubmit(userlogin.value, userlogin)"
+>
+  <div class="hi">
+    <div class="for">
+      <div class="form-group">
+        <br />
+
+        <input
+          type="text"
+          name="email"
+          class="form-control"
+          placeholder="email"
+          ngModel
+        />
+      </div>
+    </div>
+
+    <br />
+    <div class="for">
+      <div class="from-group">
+        <input
+          type="password"
+          name="passwd"
+          class="form-control"
+          placeholder="password"
+          ngModel
+        />
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <button class="btn btn-success m-2" type="submit" value="submit">
+        Login
+      </button>
+      <button class="btn btn-primary" (click)="gotoRegister()"> Register </button>
+    </div>
+  </div>
+</form>
+</div>
+<br>
+<button routerLink="/" style="margin-left: 900px;" class="btn btn-warning">Go Back</button>
+</body>
+</html>

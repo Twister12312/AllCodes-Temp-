@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome to Employee Payroll Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <a routerLink="/adminhome">Home</a>
+    <a routerLink="/list-emp">Employee Details</a>
+    <a routerLink="/admatthome">Attendance</a>
+    <a routerLink="/admschdhome">Work Schedule</a>
+    <a routerLink="/admsalhome">Salary</a>
+    <a routerLink="/admleavehome">Leaves</a>
+
+    <a routerLink="/admin">Logout</a>
+
+
+</div>
+
+    <div class="container" style=" padding:10px;border-radius: 7px;">
+        <h2 style="text-align: center;">Welcome to Employee Payroll Management</h2><br>
+
+<div >
+    <h3>All leaves for Employee ID --> {{myParamValue}}:</h3>
+    <table class="table"  style="margin: 0px; border: 1px solid rgb(216, 211, 211);">
+        <thead>
+          <tr>
+            <th>Aid</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th> </th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let att of leaves">
+            <td>{{att.aid}}</td>
+            <td>{{att.date}}</td>
+            <td>{{att.status}}</td>
+            <td>
+                <button type="button" class="btn btn-secondary" (click)="leave=att;isclicked=!isclicked;">Edit</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="Delete(att.aid)">Delete</button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+      <br>
+      <button class="btn btn-warning" routerLink="/admleavehome">Go Back</button>
+
+</div>
+<br>
+<br>
+<div *ngIf="isclicked">
+    <form #contactForm="ngForm" (ngSubmit)="Edit(contactForm.value)">
+        <div class="form-group">
+            <label for="UserId">Aid:</label>
+            <div>{{leave.aid}}</div>
+            </div>
+        <div class="form-group">
+            <label for="UserId">Date:</label>
+            <div>{{leave.date}}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="UserId">Status:</label>
+            <input required  ngModel name="status" type="text" #status="ngModel" class="form-control" id="status" style="width: 10%;">
+            <div class="alert alert-danger" *ngIf="status.touched && !status.valid">
+                <div *ngIf="status.errors?.required">Status is required.</div>
+                <div *ngIf="status.errors?.minlength">Status is minimum {{ status.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="status.errors?.maxlength">Status is maximum 10 character.</div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit" [class.disabled]="!contactForm.valid">Submit</button>
+        <br>
+        <br>
+
+      </form>
+  </div>
+  <button type="button" class="btn btn-warning" (click)="addclicked=!addclicked">Add</button>
+<div *ngIf="addclicked">
+    <form #contactForm="ngForm" (ngSubmit)="Add(contactForm.value)">
+
+        <div class="form-group">
+            <label for="UserId">Date:</label>
+            <input required  ngModel name="date" type="text" #date="ngModel" class="form-control" id="date" style="width: 10%;">
+            <div class="alert alert-danger" *ngIf="date.touched && !date.valid">
+                <div *ngIf="date.errors?.required">Date is required.</div>
+                <div *ngIf="date.errors?.minlength">Date is minimum {{ date.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="date.errors?.maxlength">Date is maximum 10 character.</div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit" [class.disabled]="!contactForm.valid">Submit</button>
+        <br>
+        <br>
+
+      </form>
+  </div>
+ </div>
+
+</body>
+</html>

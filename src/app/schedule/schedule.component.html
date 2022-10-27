@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+      }
+      table#alter tr:nth-child(even) {
+        background-color: #eee;
+      }
+      table#alter tr:nth-child(odd) {
+        background-color: #fff;
+      }
+      table#alter th {
+        color: white;
+        background-color: rgb(62, 91, 120);
+      }
+      .bt {
+        background-color: rgb(98, 135, 172);
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <div *ngFor="let record of records" class="col-md-6 col-xl-3" style="margin: auto; padding-top: 5px; padding-bottom: 10px;width: 400px;">
+      <table id="alter">
+        <tr>
+          <th>Fromdate</th>
+          <th>Todate</th>
+          <th>Timeline</th>
+        </tr>
+        <tr>
+          <td>{{ record?.fromdate }}</td>
+          <td>{{ record?.todate }}</td>
+          <td>{{ record?.timeline }}</td>
+        </tr>
+      </table>
+    </div>
+    <button class="btn btn-warning" routerLink="/navigate/{{eid}}" style="margin-left: 850px;">Go Back</button>
+  </body>
+</html>

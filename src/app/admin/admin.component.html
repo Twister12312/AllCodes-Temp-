@@ -1,0 +1,36 @@
+<br><br>
+<div class="container" style="border: groove rgb(210, 197, 197) 1px; padding:10px;border-radius: 7px;">
+    <h2 style="text-align: center;">Welcome to Employee Payroll Management</h2><br>
+    <h4 style="color: rgb(13, 183, 13);">Admin Login</h4>
+    <br>
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+
+        <div class="form-group">
+            <label for="UserId">Admin ID:</label>
+            <input required minlength="3" maxlength="10" ngModel name="firstName" type="text" #firstName="ngModel" class="form-control" id="firstName" style="width: 40%;">
+            <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                <div *ngIf="firstName.errors?.required">First Name is required.</div>
+                <div *ngIf="firstName.errors?.minlength">First Name is minimum {{ firstName.errors?.minlength.requiredLength }} character.</div>
+                <div *ngIf="firstName.errors?.maxlength">First Name is maximum 10 character.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Password</label>
+            <input required ngModel name="lastName" type="password" #lastName="ngModel" class="form-control" id="lastName" style="width:40%">
+            <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+                Password is required.
+            </div>
+        </div>
+         <br>
+
+        <button class="btn btn-primary" type="submit" [class.disabled]="!contactForm.valid">Submit</button>
+
+      </form>
+ <div *ngIf="!iscorrect" >
+<p >Invalid login</p>
+ </div>
+      </div>
+      <br>
+<button routerLink="/" style="margin-left: 900px;" class="btn btn-warning"> Go Back</button>
+

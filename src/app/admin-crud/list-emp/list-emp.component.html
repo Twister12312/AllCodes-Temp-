@@ -1,0 +1,51 @@
+<div class="sidebar">
+  <a routerLink="/adminhome">Home</a>
+  <a  routerLink="/list-emp">Employee Details</a>
+  <a routerLink="/admatthome">Attendance</a>
+  <a routerLink="/admschdhome">Work Schedule</a>
+  <a routerLink="/admsalhome">Salary</a>
+  <a routerLink="/admleavehome">Leaves</a>
+
+  <a routerLink="/admin">Logout</a>
+
+
+</div>
+<div class="container" style=" padding:10px;border-radius: 7px;">
+<h2 style="text-align: center;">Welcome to Employee Payroll Management</h2><br>
+
+<div class="col-md-12">
+  <h3 style="color:rgb(52, 164, 172);margin-left: 44%;">Employees List</h3>
+  <br><br>
+  <div class="table-responsive table-container">
+    <table class="table" style="width: 1200px; margin-left: auto;margin-right: auto;">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email ID</th>
+          <th>Designation</th>
+          <th>Phone Number</th>
+          <th>Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees">
+          <td class="hidden">{{emp.eid}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.email}}</td>
+          <td>{{emp.designation}}</td>
+          <td>{{emp.phone}}</td>
+          <td>{{emp.gender}}</td>
+          <td>
+            <button (click)="View(emp.eid)" class="btn btn-info"> View Detail</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center">
+        <button (click)="addEmp()" class="btn btn-warning"> Add Employee</button>
+      </div>
+  </div>
+</div>
+</div>

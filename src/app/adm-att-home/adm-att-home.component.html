@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Employee Payroll Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</head>
+<body >
+  <div class="sidebar">
+    <a routerLink="/adminhome">Home</a>
+    <a routerLink="/list-emp">Employee Details</a>
+    <a routerLink="/admatthome">Attendance</a>
+    <a routerLink="/admschdhome">Work Schedule</a>
+    <a routerLink="/admsalhome">Salary</a>
+    <a routerLink="/admleavehome">Leaves</a>
+
+    <a routerLink="/admin">Logout</a>
+
+
+</div>
+    <div class="container" style=" padding:10px;border-radius: 7px;padding-left: 20px;">
+        <h2 style="text-align: center;">Welcome to Employee Payroll Management </h2><br>
+        <h3 style="color:rgb(52, 164, 172);margin-left: 44%;">Attendance List</h3>
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+          <br>
+            <div class="form-group">
+                <label for="UserId"><b> Search By Employee ID</b></label>
+                <input required  ngModel name="firstName" type="text" #firstName="ngModel" class="form-control" id="firstName" style="width: 10%;">
+                <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                    <div *ngIf="firstName.errors?.required">ID is required.</div>
+                    <div *ngIf="firstName.errors?.minlength">ID is minimum {{ firstName.errors?.minlength.requiredLength }} character.</div>
+                    <div *ngIf="firstName.errors?.maxlength">ID is maximum 10S character</div>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit" [class.disabled]="!contactForm.valid">Submit</button>
+            <br>
+            <br>
+
+          </form>
+
+          <div *ngIf="issearched">
+            <h3>Searched Employee:</h3>
+            <table class="table"  style="margin: 0px; border: 1px solid rgb(216, 211, 211);">
+                <thead>
+                  <tr>
+                    <th>Eid</th>
+                    <th>Name</th>
+                    <th>Mail</th>
+                    <th>Designation</th>
+                    <th>DOB</th>
+                    <th> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td>{{employee.eid}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.email}}</td>
+                    <td>{{employee.designation}}</td>
+                    <td>{{employee.dob}}</td>
+                    <td>
+
+                      <button type="button" class="btn btn-info"(click)="View(employee.eid)">View Attendance</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+
+
+
+<div *ngIf="!issearched">
+    <h3>All Employees:</h3>
+    <table class="table"  style="margin: 0px; border: 1px solid rgb(216, 211, 211);">
+        <thead>
+          <tr>
+            <th>Eid</th>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Designation</th>
+            <th>DOB</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employees">
+            <td>{{emp.eid}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.designation}}</td>
+            <td>{{emp.dob}}</td>
+            <td>
+
+              <button type="button" class="btn btn-info"  (click)="View(emp.eid)">View Attendance</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+ </div>
+</body>
+</html>
